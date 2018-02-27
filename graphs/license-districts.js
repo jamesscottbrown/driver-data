@@ -173,7 +173,21 @@ function drawLicenseDistricts(divName, map) {
 
             map.selectAll(".feature")
                 .style("fill", function(d){
-                    return selected_districts.indexOf(d.properties.name) === -1 ? "Steelblue" : yellow;
+                    var district_name = d.properties.name;
+                    var alt_name = district_name;
+
+                    if (district_name.length == 3){
+                        alt_name = district_name[0] + district_name[1] + "0" + district_name[2];
+                    } else if (district_name.length == 2){
+                        alt_name = district_name[0] + "0" + district_name[1];
+                    }
+
+
+                    if (selected_districts.indexOf(district_name) === -1  && selected_districts.indexOf(alt_name) === -1 ){
+                        return "steelblue";
+                    }
+                    return yellow;
+                    //return selected_districts.indexOf(district_name) === -1 ? "Steelblue" : yellow;
                 })
 
         }
