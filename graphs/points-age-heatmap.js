@@ -3,7 +3,7 @@ function drawPointsAgeHeatmap(divName) {
     d3.csv("../data/points.csv", function (data) {
 
         data = data.filter(function (d) {
-            return d.sex == "male"
+            return d.sex === "male"
         });
         data = data.map(function (d) {
             d.age = parseFloat(d.age);
@@ -107,7 +107,7 @@ function drawPointsAgeHeatmap(divName) {
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
         })
-            .on("mouseout", function (d) {
+            .on("mouseout", function () {
                 d3.select(this).style("stroke", function (d) {
                     return colorScale(d.frequency);
                 });

@@ -105,7 +105,7 @@ function drawLicenseDistricts(divName, map) {
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
-            .on("mouseout", function (d) {
+            .on("mouseout", function () {
 
                 div.transition()
                     .duration(500)
@@ -117,12 +117,12 @@ function drawLicenseDistricts(divName, map) {
         main.append("text")
             .attr("x", x(70000))
             .attr("y", y(5000))
-            .text("Highest proportion of provisional licenses")
+            .text("Highest proportion of provisional licenses");
 
                 main.append("text")
             .attr("x", x(5000))
             .attr("y", y(75000))
-            .text("Lowest proportion of provisional licenses")
+            .text("Lowest proportion of provisional licenses");
 
         // Dragging ratio line
         var ratioLine = g.append("line")
@@ -143,7 +143,7 @@ function drawLicenseDistricts(divName, map) {
                     .on("drag", dragged)
             );
 
-        function dragged(d) {
+        function dragged() {
             d3.select(this).attr("cx", Math.min(d3.event.x, width)).attr("cy", Math.max(0,d3.event.y));
             updateHighlighting();
         }
@@ -176,9 +176,9 @@ function drawLicenseDistricts(divName, map) {
                     var district_name = d.properties.name;
                     var alt_name = district_name;
 
-                    if (district_name.length == 3){
+                    if (district_name.length === 3){
                         alt_name = district_name[0] + district_name[1] + "0" + district_name[2];
-                    } else if (district_name.length == 2){
+                    } else if (district_name.length === 2){
                         alt_name = district_name[0] + "0" + district_name[1];
                     }
 

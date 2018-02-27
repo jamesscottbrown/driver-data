@@ -98,7 +98,7 @@ function drawScatterplotSexCategory(divName) {
             .on("mouseout", function (d) {
 
                 var sex_color = (parseFloat(d.Male) > parseFloat(d.Female)) ? blue : pink;
-                var color = d.Class.indexOf("prov") == -1 ? sex_color : "none"
+                var color = d.Class.indexOf("prov") === -1 ? sex_color : "none";
                 d3.select(this).style("fill", color);
 
 
@@ -108,7 +108,7 @@ function drawScatterplotSexCategory(divName) {
             })
             .style("fill", function (d) {
                 var sex_color = (parseFloat(d.Male) > parseFloat(d.Female)) ? blue : pink;
-                return d.Class.indexOf("prov") == -1 ? sex_color : "none"
+                return d.Class.indexOf("prov") === -1 ? sex_color : "none"
             })
             .style("stroke-width", "1px")
             .style("stroke", function (d) {

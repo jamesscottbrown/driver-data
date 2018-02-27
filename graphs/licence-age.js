@@ -199,7 +199,7 @@ function drawLicenseAgePlot(divName) {
 
                 .datum(data)
                 .attr("d", line)
-                .attr("id", function (d) {
+                .attr("id", function () {
                     return "line_" + field_name
                 });
 
@@ -228,7 +228,7 @@ function drawLicenseAgePlot(divName) {
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })
-                .on("mouseout", function (d) {
+                .on("mouseout", function () {
                     d3.select(this).style("fill", color);
 
                     div.transition()
