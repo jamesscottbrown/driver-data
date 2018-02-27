@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<body onload="drawEverything();">
+
+<div id="license-age">
+    <h2>Number of license holders by age</h2>
+    <p>This chart shows all of the data recorded in sheet DL0101-June2017.</p>
+
+
+</div>
+
+<div id="license-sex-category">
+    <h2>Number of license holders by sex and category</h2>
+    <p>This chart shows all of the data recorded in sheet DL0110-June2017.</p>
+
+</div>
+
+<div id="points-distribution">
+    <h2>Distribution of number of points</h2>
+
+    <p>This chart shows the data in the Total row (summed across all Districts) of sheet DL0132-June2017.</p>
+
+    <p>NB. Sharp peaks at 3/6/9, and an incredibly long tail!</p>
+</div>
+
+
+<div id="points-distribution-age">
+    <h2>Distribution of number of points by age and sex</h2>
+
+    <p> N.B. "Your licence will be cancelled (revoked) if you get 6 or more points within 2 years of passing your test." <a href="https://www.gov.uk/penalty-points-endorsements/new-drivers">reference</a> </p>
+    <p>This chart shows all of the data in sheet DRL0131-June2017. Because the number of licence-holders
+        <a href="#license-age">varies significantly with age</a>, counts are normalized by number of drivers.</p>
+
+    For context see https://www.gov.uk/penalty-points-endorsements/endorsement-codes-and-penalty-points
+
+</div>
+
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <script src="licence-sex-category.js"></script>
+    <script src="licence-age.js"></script>
+    <script src="points-distribution.js"></script>
+    <script src="points-age-heatmap.js"></script>
+
+
+    <script>
+
+        // Colors
+        var pink = "#F4C2C2", blue = "#89CFF0", yellow = "#ffc200", black = "black";
+
+        function to2dp(x){
+            return Math.round(x * 100) / 100;
+        }
+
+        function drawEverything() {
+            drawLicenseAgePlot("license-age");
+
+            drawMap();
+            drawScatterplotSexCategory("license-sex-category");
+            drawPointsDistribution("points-distribution");
+            drawPointsAgeHeatmap("points-distribution-age");
+        }
+
+        function drawMap() {
+            var width = 960,
+                height = 500;
+
+
+            var width = 960,
+                height = 1160;
+
+            var projection = d3.geoAlbers()
+                .center([0, 55.4])
+                .rotate([4.4, 0])
+                .parallels([50, 60])
+                .scale(1200 * 5)
+                .translate([width / 2, height / 2]);
+
+            var path = d3.geoPath()
+                .projection(projection);
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            d3.json("../data/Districts.json", function (error, uk) {
+
+                var districts = svg.selectAll(".subunit")
+                    .data(topojson.feature(uk, uk.objects['Districts']).features)
+                    .enter().append("path")
+                    .attr("class", "feature")
+                    .attr("d", path)
+                    .on("click", function (d) {
+                        console.log(d.properties.name)
+                    });
+
+
+                districts.style("fill", function (d) {
+                    return d.properties.name.startsWith("PO") ? "red" : "grey"
+                })
+
+            });
+
+
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
