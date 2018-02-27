@@ -119,7 +119,7 @@ function drawLicenseDistricts(divName, map) {
             .attr("y", y(5000))
             .text("Highest proportion of provisional licenses");
 
-                main.append("text")
+        main.append("text")
             .attr("x", x(5000))
             .attr("y", y(75000))
             .text("Lowest proportion of provisional licenses");
@@ -140,15 +140,15 @@ function drawLicenseDistricts(divName, map) {
             .attr("r", 4)
             .style("fill", "black")
             .call(d3.drag()
-                    .on("drag", dragged)
+                .on("drag", dragged)
             );
 
         function dragged() {
-            d3.select(this).attr("cx", Math.min(d3.event.x, width)).attr("cy", Math.max(0,d3.event.y));
+            d3.select(this).attr("cx", Math.min(d3.event.x, width)).attr("cy", Math.max(0, d3.event.y));
             updateHighlighting();
         }
 
-        function updateHighlighting(){
+        function updateHighlighting() {
             var cx = parseFloat(ratioCircle.attr("cx"));
             var cy = parseFloat(ratioCircle.attr("cy"));
             var gradient = (height - cy) / cx;
@@ -162,8 +162,8 @@ function drawLicenseDistricts(divName, map) {
             var ratio = x.invert(cx) / y.invert(cy);
 
             var selected_districts = [];
-            main.selectAll(".scatter-dots").style("fill", function(d){
-                if ((d.provisional_total / d.full_total) > ratio){
+            main.selectAll(".scatter-dots").style("fill", function (d) {
+                if ((d.provisional_total / d.full_total) > ratio) {
                     selected_districts.push(d.district);
                     return yellow;
                 }
@@ -172,27 +172,26 @@ function drawLicenseDistricts(divName, map) {
 
 
             map.selectAll(".feature")
-                .style("fill", function(d){
+                .style("fill", function (d) {
                     var district_name = d.properties.name;
                     var alt_name = district_name;
 
-                    if (district_name.length === 3){
+                    if (district_name.length === 3) {
                         alt_name = district_name[0] + district_name[1] + "0" + district_name[2];
-                    } else if (district_name.length === 2){
+                    } else if (district_name.length === 2) {
                         alt_name = district_name[0] + "0" + district_name[1];
                     }
 
 
-                    if (selected_districts.indexOf(district_name) === -1  && selected_districts.indexOf(alt_name) === -1 ){
+                    if (selected_districts.indexOf(district_name) === -1 && selected_districts.indexOf(alt_name) === -1) {
                         return "steelblue";
                     }
                     return yellow;
-                    //return selected_districts.indexOf(district_name) === -1 ? "Steelblue" : yellow;
                 })
 
         }
 
-            updateHighlighting();
+        updateHighlighting();
 
     });
 

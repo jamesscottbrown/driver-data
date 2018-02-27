@@ -112,7 +112,6 @@ function drawPointsAgeHeatmap(divName) {
                     return colorScale(d.frequency);
                 });
 
-
                 div.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -137,14 +136,9 @@ function drawPointsAgeHeatmap(divName) {
                 rects.style("fill", function (d) {
                     return colorScale(d.frequency);
                 })
-                    .style("stroke", function (d) {
-                        return colorScale(d.frequency);
-                    });
-
-            })
-
-
+                .style("stroke", function (d) {
+                    return colorScale(d.frequency);
+                });
+        })
     })
-
-
 }

@@ -1,6 +1,4 @@
 function drawPointsDistribution(divName) {
-
-
     d3.csv("../data/points-distribution.csv", function (data) {
 
         var margin = {top: 20, right: 15, bottom: 60, left: 60}
@@ -18,7 +16,6 @@ function drawPointsDistribution(divName) {
                 return parseFloat(d.Count)
             })])
             .range([height, 0]);
-
 
         d3.select('#' + divName).append("div").attr("id", "controls");
 
@@ -38,8 +35,6 @@ function drawPointsDistribution(divName) {
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
             .attr('class', 'main axis date')
-            //.select(".domain")
-            //.remove()
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -107,15 +102,6 @@ function drawPointsDistribution(divName) {
             })
             .style("fill", color);
 
-        /*
-         .style("stroke", color)
-     .style("fill", function (d) {
-         return provisional ?  "none" : color
-     });
-     */
-
-
-
         d3.select('#controls')
             .append("label")
             .attr("for", "points-yaxis-slider")
@@ -142,34 +128,27 @@ function drawPointsDistribution(divName) {
                     .datum(data)
                     .attr("d", line);
 
-drawYAxis();
+                drawYAxis();
 
             });
 
         slider.node().value = y.domain()[1];
 
-            function drawYAxis(){
+        function drawYAxis() {
+            d3.select("#yAxis").remove();
 
-        //d3.select("#yAxis").node().innerHTML = "";
-        d3.select("#yAxis").remove();
+            main.append("g")
+                .attr("id", "yAxis")
+                .call(d3.axisLeft(y))
+                .attr('class', 'main axis date')
+                .append("text")
+                .attr("fill", "#000")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end")
+                .text("People");
 
-        main.append("g")
-            .attr("id", "yAxis")
-            .call(d3.axisLeft(y))
-            .attr('class', 'main axis date')
-            .append("text")
-            .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("text-anchor", "end")
-            .text("People");
-
-    }
-
-
+        }
     })
-
-
-
 }

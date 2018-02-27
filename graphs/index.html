@@ -7,7 +7,11 @@
 
 <div id="license-age">
     <h2>How old are driving licence holders?</h2>
-    <p>There is a sudden surge in provisional driving license registrations <u id="age-17">at 17</u>, which gradually declines as people switch to full licenses. There is a sudden step down in all license types <u id="age-70">at 70</u>, after which licenses must be renewed every 3 years (rather than the 10 years for younger drivers). Provisional licenses for some vehicle types (such as mopeds) can be obtained by people under 16, but this makes up a very small fraction of all licenses.</p>
+    <p>There is a sudden surge in provisional driving license registrations <u id="age-17">at 17</u>, which gradually
+        declines as people switch to full licenses. There is a sudden step down in all license types <u id="age-70">at
+            70</u>, after which licenses must be renewed every 3 years (rather than the 10 years for younger drivers).
+        Provisional licenses for some vehicle types (such as mopeds) can be obtained by people under 16, but this makes
+        up a very small fraction of all licenses.</p>
 
     <p>This chart shows all of the data recorded in sheet DL0101-June2017.</p>
 
@@ -16,9 +20,13 @@
 
 <div id="license-sex-category">
     <h2>How many men and women hold each class of licence?</h2>
-    <p>Some classes of license are far more common than others. The most common are held by similar numbers of men and women, but there are a number of less common licence types that are held almost exclusively by men (such as Class H - Tracked vehicles). Additionally, for some classes (such as A and H) there are far more provisional than full licenses. </p>
+    <p>Some classes of license are far more common than others. The most common are held by similar numbers of men and
+        women, but there are a number of less common licence types that are held almost exclusively by men (such as
+        Class H - Tracked vehicles). Additionally, for some classes (such as A and H) there are far more provisional
+        than full licenses. </p>
 
-    <p>For context, see this <a href="https://www.gov.uk/old-driving-licence-categories">official explanation of driving license categories</a>.</p>
+    <p>For context, see this <a href="https://www.gov.uk/old-driving-licence-categories">official explanation of driving
+        license categories</a>.</p>
     <p>This chart shows all of the data recorded in sheet DL0110-June2017.</p>
 
 </div>
@@ -28,19 +36,25 @@
 
     <p>This chart shows the data in the Total row (summed across all Districts) of sheet DL0132-June2017.</p>
 
-    <p>Note that there are very large peaks at 3 points, 6, points, and 9 points, and that one person managed to receive 51 points.</p>
+    <p>Note that there are very large peaks at 3 points, 6, points, and 9 points, and that one person managed to receive
+        51 points.</p>
 </div>
 
 
 <div id="points-distribution-age">
     <h2>How does number of points vary with age?</h2>
 
-    <p> Young drivers have fewer points on average: they have had less opportunity to acquire them, and are perhaps initially more cautious because receiving 6 points within 2 years of passing the test would trigger automatic revocation of their license.  </p>
+    <p> Young drivers have fewer points on average: they have had less opportunity to acquire them, and are perhaps
+        initially more cautious because receiving 6 points within 2 years of passing the test would trigger automatic
+        revocation of their license. </p>
 
     <p>This chart shows all of the data in sheet DRL0131-June2017. Because the number of licence-holders
-        <a href="#license-age">varies significantly with age</a>, counts are normalized by number of drivers in each age-group.</p>
+        <a href="#license-age">varies significantly with age</a>, counts are normalized by number of drivers in each
+        age-group.</p>
 
-    <p>For context, see this <a href="https://www.gov.uk/penalty-points-endorsements/endorsement-codes-and-penalty-points">official explanation of the penalty point system</a>.</p>
+    <p>For context, see this <a
+            href="https://www.gov.uk/penalty-points-endorsements/endorsement-codes-and-penalty-points">official
+        explanation of the penalty point system</a>.</p>
 
 </div>
 
@@ -49,7 +63,8 @@
     <h2>How does the proportion of provisional licenses differ between districts?</h2>
 
     <p>Districts in which a high proportion of licences are provisional occupy the lower-right corner of this plot.
-        Districts in which the proportion of licenses that are provisional is above a threshold are highlighted in yellow.
+        Districts in which the proportion of licenses that are provisional is above a threshold are highlighted in
+        yellow.
         Dragging the circle on the line adjusts a threshold.
     </p>
 
@@ -58,84 +73,81 @@
 </div>
 
 
-    <script src="http://d3js.org/d3.v4.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <script src="licence-sex-category.js"></script>
-    <script src="licence-age.js"></script>
-    <script src="license-districts.js"></script>
-    <script src="points-distribution.js"></script>
-    <script src="points-age-heatmap.js"></script>
-
-
-    <script>
-
-        // Colors
-        var pink = "#F4C2C2", blue = "#89CFF0", yellow = "#ffc200", black = "black";
-
-        function to2dp(x){
-            return Math.round(x * 100) / 100;
-        }
-
-        function drawEverything() {
-            drawLicenseAgePlot("license-age");
-
-            var map = drawMap();
-
-            drawScatterplotSexCategory("license-sex-category");
-            drawPointsDistribution("points-distribution");
-            drawPointsAgeHeatmap("points-distribution-age");
-            drawLicenseDistricts("licence-districts", map);
-        }
-
-        function drawMap() {
-            var width = 960,
-                height = 500;
+<script src="licence-sex-category.js"></script>
+<script src="licence-age.js"></script>
+<script src="license-districts.js"></script>
+<script src="points-distribution.js"></script>
+<script src="points-age-heatmap.js"></script>
 
 
-            var width = 960,
-                height = 1160;
+<script>
 
-            var projection = d3.geoAlbers()
-                .center([0, 55.4])
-                .rotate([4.4, 0])
-                .parallels([50, 60])
-                .scale(1200 * 5)
-                .translate([width / 2, height / 2]);
+    // Colors
+    var pink = "#F4C2C2", blue = "#89CFF0", yellow = "#ffc200", black = "black";
 
-            var path = d3.geoPath()
-                .projection(projection);
+    function to2dp(x) {
+        return Math.round(x * 100) / 100;
+    }
 
-            var svg = d3.select("body").append("svg")
-                .attr("width", width)
-                .attr("height", height);
+    function drawEverything() {
+        drawLicenseAgePlot("license-age");
 
-            d3.json("../data/Districts.json", function (error, uk) {
+        var map = drawMap();
 
-                var districts = svg.selectAll(".subunit")
-                    .data(topojson.feature(uk, uk.objects['Districts']).features)
-                    .enter().append("path")
-                    .attr("class", "feature")
-                    .attr("d", path)
-                    .on("click", function (d) {
-                        console.log(d.properties.name)
-                    });
+        drawScatterplotSexCategory("license-sex-category");
+        drawPointsDistribution("points-distribution");
+        drawPointsAgeHeatmap("points-distribution-age");
+        drawLicenseDistricts("licence-districts", map);
+    }
+
+    function drawMap() {
+        var width = 960,
+            height = 500;
 
 
-                districts.style("fill", function (d) {
-                    return d.properties.name.startsWith("PO") ? "red" : "grey"
-                })
+        var width = 960,
+            height = 1160;
 
-            });
+        var projection = d3.geoAlbers()
+            .center([0, 55.4])
+            .rotate([4.4, 0])
+            .parallels([50, 60])
+            .scale(1200 * 5)
+            .translate([width / 2, height / 2]);
 
-            return svg;
-        }
+        var path = d3.geoPath()
+            .projection(projection);
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        d3.json("../data/Districts.json", function (error, uk) {
+
+            var districts = svg.selectAll(".subunit")
+                .data(topojson.feature(uk, uk.objects['Districts']).features)
+                .enter().append("path")
+                .attr("class", "feature")
+                .attr("d", path)
+                .on("click", function (d) {
+                    console.log(d.properties.name)
+                });
 
 
+            districts.style("fill", function (d) {
+                return d.properties.name.startsWith("PO") ? "red" : "grey"
+            })
+
+        });
+
+        return svg;
+    }
 
 
-
-    </script>
+</script>
 </body>
 </html>

@@ -38,8 +38,6 @@ function drawLicenseAgePlot(divName) {
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
             .attr('class', 'main axis date')
-            //.select(".domain")
-            //.remove()
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -71,7 +69,7 @@ function drawLicenseAgePlot(divName) {
         addLine("full_total", black, "people");
 
         // 70 year old annotation
-       var line_70 =  main.append("line")
+        var line_70 = main.append("line")
             .attr("x1", x(70))
             .attr("x2", x(70))
             .attr("y1", y(0))
@@ -83,21 +81,6 @@ function drawLicenseAgePlot(divName) {
             .attr("x", x(71))
             .attr("y", y(800000))
             .text("License renewal required every 3 years");
-
-        /*
-        main.append("line")
-            .attr("x1", x(15))
-            .attr("x2", x(15))
-            .attr("y1", y(0))
-            .attr("y2", y.range()[1])
-            .style("stroke-dasharray", "5,5")
-            .style("stroke", "black");
-
-        main.append("text")
-            .attr("x", x(0))
-            .attr("y", y(800000))
-            .text("Moped provisional license available");
-*/
 
         // 17 year old annotation
         var line_17 = main.append("line")
@@ -237,15 +220,6 @@ function drawLicenseAgePlot(divName) {
                 })
                 .style("fill", color)
                 .style("opacity", provisional ? provisionalOpacity : "1.0");
-
-            /*
-             .style("stroke", color)
-         .style("fill", function (d) {
-             return provisional ?  "none" : color
-         });
-         */
-
-
         }
 
         d3.select("#age-17").on("mouseover", function () {

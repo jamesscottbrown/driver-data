@@ -1,6 +1,4 @@
 function drawScatterplotSexCategory(divName) {
-
-
     d3.csv("../data/entitlement-class.csv", function (data) {
 
         var margin = {top: 20, right: 15, bottom: 60, left: 60}
@@ -38,8 +36,6 @@ function drawScatterplotSexCategory(divName) {
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
             .attr('class', 'main axis date')
-            //.select(".domain")
-            //.remove()
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -79,8 +75,6 @@ function drawScatterplotSexCategory(divName) {
             .attr("r", 4)
             .style("opacity", 0.5)
             .style("stroke", "grey")
-            //.attr("title", function(d){return parseFloat(d.Male)/parseFloat(d.Female) + "% male"});
-
             .on("mouseover", function (d) {
 
                 d3.select(this).style("fill", yellow);
@@ -126,6 +120,4 @@ function drawScatterplotSexCategory(divName) {
             .style("stroke", "black")
             .style("opacity", 0.5)
     })
-
-
 }
