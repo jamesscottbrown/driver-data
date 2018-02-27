@@ -3,17 +3,77 @@
 
 <link rel="stylesheet" type="text/css" href="style.css">
 
+  <style>
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  }
+
+
+  .h1, .h2, .j3, h1, h2, h3 {
+  margin-top: 20px;
+  margin-bottom: 10px
+  }
+
+
+  .h2, h2 {
+  font-size: 30px;
+  }
+
+  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
+  .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small,
+  h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small,
+  .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #777;
+  }
+
+  body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff
+  }
+
+  .page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee
+  }
+
+  .small {
+  font-weight: 400;
+  line-height: 1;
+  color: #777
+  }
+
+  small {
+  font-size: 65%;
+  }
+ </style>
+
 <body onload="drawEverything();">
+
+    <div class="page-header">
+      <h2>Driving license statistics <small>A series of visualizations of <a href="https://data.gov.uk/dataset/driving-licence-data">GB Driving Licence Data</a>. </small></h2>
+    </div>
 
 <div id="license-age">
     <h2>How old are driving licence holders?</h2>
     <p>There is a sudden surge in provisional driving license registrations <u id="age-17">at 17</u>, which gradually
-        declines as people switch to full licenses. There is a sudden step down in all license types <u id="age-70">at
-            70</u>, after which licenses must be renewed every 3 years (rather than the 10 years for younger drivers).
-        Provisional licenses for some vehicle types (such as mopeds) can be obtained by people under 16, but this makes
-        up a very small fraction of all licenses.</p>
+        declines as people switch to full licenses. Provisional licenses for some vehicle types (such as mopeds) can be obtained by people under 16, but this makes
+        up a very small fraction of all licenses</p>
 
-    <p>This chart shows all of the data recorded in sheet DL0101-June2017.</p>
+        <p>There is a sudden step down in all license types <u id="age-70">at
+            70</u>, after which licenses must be renewed every 3 years (rather than the 10 years for younger drivers).
+        </p>
+
+    <p><b>Source:</b> sheet DL0101-June2017.</p>
 
 
 </div>
@@ -27,17 +87,18 @@
 
     <p>For context, see this <a href="https://www.gov.uk/old-driving-licence-categories">official explanation of driving
         license categories</a>.</p>
-    <p>This chart shows all of the data recorded in sheet DL0110-June2017.</p>
+
+    <p><b>Source:</b> sheet DL0110-June2017.</p>
 
 </div>
 
 <div id="points-distribution">
     <h2>How many points do drivers have?</h2>
 
-    <p>This chart shows the data in the Total row (summed across all Districts) of sheet DL0132-June2017.</p>
+    <p>The most common (non-zero) number of points is 3, followed by 6 and 9. Some people have received for more than this:
+        one person has 51 points.</p>
 
-    <p>Note that there are very large peaks at 3 points, 6, points, and 9 points, and that one person managed to receive
-        51 points.</p>
+    <p><b>Source:</b> sheet DL0132-June2017.</p>
 </div>
 
 
@@ -47,6 +108,8 @@
     <p> Young drivers have fewer points on average: they have had less opportunity to acquire them, and are perhaps
         initially more cautious because receiving 6 points within 2 years of passing the test would trigger automatic
         revocation of their license. </p>
+
+    <p><b>Source:</b> sheet DL01311 - June2017.</p>
 
     <p>This chart shows all of the data in sheet DRL0131-June2017. Because the number of licence-holders
         <a href="#license-age">varies significantly with age</a>, counts are normalized by number of drivers in each
@@ -62,13 +125,15 @@
 <div id="licence-districts">
     <h2>How does the proportion of provisional licenses differ between districts?</h2>
 
-    <p>Districts in which a high proportion of licences are provisional occupy the lower-right corner of this plot.
-        Districts in which the proportion of licenses that are provisional is above a threshold are highlighted in
+    <p>Districts with the highest proportion of provisional licences are mainly in major cities.</p>
+
+    <p>These dsitricts occupy the lower-right corner of this plot: those in which the proportion of licenses that are provisional is above a threshold are highlighted in
         yellow.
-        Dragging the circle on the line adjusts a threshold.
+        Dragging the circle on the line adjusts this threshold.
     </p>
 
-    <p>This shows that districts with the highest proportion of provisional licences are mainly in major cities.</p>
+
+    <p><b>Source:</b> sheet DL0102-June2017.</p>
 
 </div>
 
