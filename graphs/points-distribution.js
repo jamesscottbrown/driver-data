@@ -20,6 +20,8 @@ function drawPointsDistribution(divName) {
             .range([height, 0]);
 
 
+        d3.select('#' + divName).append("div").attr("id", "controls");
+
         var chart = d3.select('#' + divName)
             .append('svg:svg')
             .attr('width', width + margin.right + margin.left)
@@ -114,12 +116,12 @@ function drawPointsDistribution(divName) {
 
 
 
-        d3.select('#' + divName)
+        d3.select('#controls')
             .append("label")
             .attr("for", "points-yaxis-slider")
             .text("Truncate y-axis");
 
-        var slider = d3.select('#' + divName)
+        var slider = d3.select('#controls')
             .append("input")
             .attr("id", "points-yaxis-slider")
             .attr("type", "input")

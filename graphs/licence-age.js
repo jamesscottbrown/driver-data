@@ -71,7 +71,7 @@ function drawLicenseAgePlot(divName) {
         addLine("full_total", black, "people");
 
         // 70 year old annotation
-        main.append("line")
+       var line_70 =  main.append("line")
             .attr("x1", x(70))
             .attr("x2", x(70))
             .attr("y1", y(0))
@@ -100,7 +100,7 @@ function drawLicenseAgePlot(divName) {
 */
 
         // 17 year old annotation
-        main.append("line")
+        var line_17 = main.append("line")
             .attr("x1", x(17))
             .attr("x2", x(17))
             .attr("y1", y(0))
@@ -247,7 +247,19 @@ function drawLicenseAgePlot(divName) {
 
 
         }
-    })
 
+        d3.select("#age-17").on("mouseover", function () {
+            line_17.style("stroke", yellow).style("stroke-width", "3px");
+        }).on("mouseout", function () {
+            line_17.style("stroke", black).style("stroke-width", "1px")
+        });
+
+        d3.select("#age-70").on("mouseover", function () {
+            line_70.style("stroke", yellow).style("stroke-width", "3px");
+        }).on("mouseout", function () {
+            line_70.style("stroke", black).style("stroke-width", "1px")
+        })
+
+    });
 
 }
