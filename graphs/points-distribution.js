@@ -105,7 +105,7 @@ function drawPointsDistribution(divName) {
         d3.select('#controls')
             .append("label")
             .attr("for", "points-yaxis-slider")
-            .text("Truncate y-axis");
+            .text("Truncate y-axis at ");
 
         var slider = d3.select('#controls')
             .append("input")
