@@ -175,26 +175,6 @@ function drawlicenceAgePlot(divName) {
 
             var g = main.append("svg:g");
 
-            // Line
-            var line = d3.line()
-                .x(function (d) {
-                    return x(d.age);
-                })
-                .y(function (d) {
-                    return y(d[field_name]);
-                });
-
-            g.append("path")
-                .style("fill", "none")
-                .style("stroke", color)
-                .attr("stroke-width", 1.5)
-
-                .datum(data)
-                .attr("d", line)
-                .attr("id", function () {
-                    return "line_" + field_name
-                });
-
             // Points
             g.selectAll("scatter-dots")
                 .data(data)
@@ -229,6 +209,28 @@ function drawlicenceAgePlot(divName) {
                 })
                 .style("fill", color)
                 .style("opacity", provisional ? provisionalOpacity : "1.0");
+
+            // Line
+            var line = d3.line()
+                .x(function (d) {
+                    return x(d.age);
+                })
+                .y(function (d) {
+                    return y(d[field_name]);
+                });
+
+            g.append("path")
+                .style("fill", "none")
+                .style("stroke", color)
+                .attr("stroke-width", 1.5)
+
+                .datum(data)
+                .attr("d", line)
+                .attr("id", function () {
+                    return "line_" + field_name
+                });
+
+
         }
 
         d3.select("#age-17").on("mouseover", function () {
