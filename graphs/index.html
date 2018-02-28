@@ -75,6 +75,8 @@
 
     <p><b>Source:</b> sheet DL0101-June2017.</p>
 
+    <p><b>Interactivity:</b> mouse-over a data-point to see the corresponding value, or mouse-over an entry in the legend to highlight the corresponding curve.</p>
+
 
 </div>
 
@@ -90,15 +92,21 @@
 
     <p><b>Source:</b> sheet DL0110-June2017.</p>
 
+    <p><b>Interactivity:</b> mouse-over a data-point to see the corresponding value.</p>
+
+
 </div>
 
 <div id="points-distribution">
     <h2>How many points do drivers have?</h2>
 
-    <p>The most common (non-zero) number of points is 3, followed by 6 and 9. Some people have received for more than this:
+    <p>The most common (non-zero) number of points is 3, followed by 6 and 9. Some people have received far more than this:
         one person has 51 points.</p>
 
     <p><b>Source:</b> sheet DL0132-June2017.</p>
+
+    <p><b>Interactivity:</b> mouse-over a data-point to see the corresponding value, or scale the y-axis to zoom-in on less common numbers of points.</p>
+
 </div>
 
 
@@ -111,9 +119,9 @@
 
     <p><b>Source:</b> sheet DL01311 - June2017.</p>
 
-    <p>This chart shows all of the data in sheet DRL0131-June2017. Because the number of licence-holders
-        <a href="#license-age">varies significantly with age</a>, counts are normalized by number of drivers in each
-        age-group.</p>
+    <p><b>Interactivity:</b> mouse-over a cell in the heat-map to see the corresponding value, and plots for people of the corresponding age or with the corresponding number of points. Click on the heat-map to lock these plots to a particular value, so that you cna mouse over their data points to see corresponding values.</p>
+
+    <p>These plots show <i>the proportion of drivers of a particular age who have a particular number of points</i> (scaled to be per thousand drivers of that age).</p>
 
     <p>For context, see this <a
             href="https://www.gov.uk/penalty-points-endorsements/endorsement-codes-and-penalty-points">official
@@ -125,15 +133,18 @@
 <div id="licence-districts">
     <h2>How does the proportion of provisional licenses differ between districts?</h2>
 
-    <p>Districts with the highest proportion of provisional licences are mainly in major cities.</p>
+    <p>In a few postcode districts, approximately half of all driving licenses are provisional, but in others this figure is closer to 5%.</p>
 
-    <p>These dsitricts occupy the lower-right corner of this plot: those in which the proportion of licenses that are provisional is above a threshold are highlighted in
+    <p>These districts occupy the lower-right corner of this plot: those in which the proportion of licenses that are provisional is above a threshold are highlighted in
         yellow.
         Dragging the circle on the line adjusts this threshold.
     </p>
 
 
     <p><b>Source:</b> sheet DL0102-June2017.</p>
+
+    <p><b>Interactivity:</b> mouse-over plotted points to see corresponding data values. Drag the black circle on the end ot the line to adjust the threshold proportion of provisional licenses - selected districts will be highlighted on the scatter-plot and map.</p>
+
 
 </div>
 
@@ -170,18 +181,16 @@
     }
 
     function drawMap() {
-        var width = 960,
-            height = 500;
 
-
-        var width = 960,
-            height = 1160;
+        var sf = 2;
+        var width = 960/sf,
+            height = 1160/sf;
 
         var projection = d3.geoAlbers()
             .center([0, 55.4])
             .rotate([4.4, 0])
             .parallels([50, 60])
-            .scale(1200 * 5)
+            .scale(1200 * 5/sf)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
