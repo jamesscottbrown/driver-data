@@ -47,9 +47,9 @@ function drawScatterplotSexCategory(divName) {
             .attr("fill", "#000")
             .attr("y", 30)
             .attr("dy", "0.71em")
-            .attr("x", (width / 2).toString())
+            .attr("x", x(13000000))
             .attr("text-anchor", "end")
-            .text("Men");
+            .text("Number of men holding licence");
 
         main.append("g")
             .call(d3.axisLeft(y))
@@ -60,7 +60,7 @@ function drawScatterplotSexCategory(divName) {
             .attr("y", 6)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("Women");
+            .text("Number of women holding licence");
 
 
         var g = main.append("svg:g");
