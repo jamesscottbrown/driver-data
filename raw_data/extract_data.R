@@ -13,8 +13,8 @@ write.csv(licence_ages, "licence_age.csv", quote=FALSE, row.names=FALSE)
 
 ## Extract data for "How many men and women hold each class of licence?"
 class <- read_excel(spreadsheet, sheet="DRL0110-June2017", range="A22:A94", col_names=c("class"))
-female <- read_excel(spreadsheet, sheet="DRL0110-June2017", range="C22:C94", col_names=c("female"))
-male <- read_excel(spreadsheet, sheet="DRL0110-June2017", range="D22:D94", col_names=c("male"))
+female <- read_excel(spreadsheet, sheet="DRL0110-June2017", range="C22:C94", col_names=c("Female"))
+male <- read_excel(spreadsheet, sheet="DRL0110-June2017", range="D22:D94", col_names=c("Male"))
 
 licence_classes <- merge(class, female, by.x=0, by.y=0)
 licence_classes <- merge(licence_classes, male, by.x=0, by.y=0)
@@ -32,7 +32,7 @@ colnames(points) <- "Points"
 
 frequency <- read_excel(spreadsheet, sheet="DRL0132-June2017", range="C2848:AM2848", col_name=FALSE)
 frequency <- t(frequency) # transpose
-colnames(frequency) <- "Frequency"
+colnames(frequency) <- "Count"
 
 point_frequency <- merge(points, frequency, by.x=0, by.y=0)
 point_frequency[,"Row.names"] <- NULL
