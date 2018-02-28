@@ -22,13 +22,13 @@ function drawLicenseDistricts(divName) {
 
         var x = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return Math.max(parseFloat(d.provisional_total), parseFloat(d.full_total));
+                return Math.max(d.provisional_total, d.full_total);
             })])
             .range([0, width]);
 
         var y = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return Math.max(parseFloat(d.provisional_total), parseFloat(d.full_total))
+                return Math.max(d.provisional_total, d.full_total)
             })])
             .range([height, 0]);
 
@@ -50,7 +50,7 @@ function drawLicenseDistricts(divName) {
         main.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             //.select(".domain")
             //.remove()
             .append("text")
@@ -63,7 +63,7 @@ function drawLicenseDistricts(divName) {
 
         main.append("g")
             .call(d3.axisLeft(y))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
@@ -86,10 +86,10 @@ function drawLicenseDistricts(divName) {
             .enter().append("svg:circle")
             .attr("class", "scatter-dots")
             .attr("cx", function (d) {
-                return x(parseFloat(d.provisional_total));
+                return x(d.provisional_total);
             })
             .attr("cy", function (d) {
-                return y(parseFloat(d.full_total));
+                return y(d.full_total);
             })
             .attr("r", 4)
             .style("opacity", 0.5)
@@ -101,7 +101,7 @@ function drawLicenseDistricts(divName) {
                     .duration(200)
                     .style("opacity", .9);
 
-                var ratio = parseFloat(d.provisional_total) / (parseFloat(d.provisional_total) + parseFloat(d.full_total));
+                var ratio = d.provisional_total / (d.provisional_total + d.full_total);
                 var percentage = to2dp(ratio * 100);
                 div.html("<b> " + percentage + "%<br /> of licenses are provisional in <b>" + d.district + "</b> (" + d.provisional_total + " provisional, " + d.full_total + " full)")
                     .style("left", (d3.event.pageX) + "px")

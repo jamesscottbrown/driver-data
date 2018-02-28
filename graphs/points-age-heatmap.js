@@ -39,7 +39,7 @@ function drawPointsAgeHeatmap(divName) {
 
         var colorScale = d3.scaleSequential(d3.interpolateViridis)
             .domain([0, d3.max(data, function (d) {
-                return parseFloat(d.frequency);
+                return d.frequency;
             })]);
 
         var chart = d3.select('#' + divName)
@@ -57,7 +57,7 @@ function drawPointsAgeHeatmap(divName) {
         main.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -68,7 +68,7 @@ function drawPointsAgeHeatmap(divName) {
 
         main.append("g")
             .call(d3.axisLeft(y))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
@@ -221,7 +221,7 @@ function drawPointsAgeHeatmap(divName) {
             main.append("g")
                 .attr("transform", "translate(0," + geom.height + ")")
                 .call(d3.axisBottom(x))
-                .attr('class', 'main axis date')
+                .attr('class', 'main axis')
                 .append("text")
                 .attr("fill", "#000")
                 .attr("y", 30)
@@ -232,7 +232,7 @@ function drawPointsAgeHeatmap(divName) {
 
             main.append("g")
                 .call(d3.axisLeft(y))
-                .attr('class', 'main axis date')
+                .attr('class', 'main axis')
                 .append("text")
                 .attr("fill", "#000")
                 .attr("transform", "rotate(-90)")
@@ -278,10 +278,10 @@ function drawPointsAgeHeatmap(divName) {
                     .data(filtered_data)
                     .enter().append("svg:circle")
                     .attr("cx", function (d) {
-                        return x(parseFloat(d[x_axis_field]));
+                        return x(d[x_axis_field]);
                     })
                     .attr("cy", function (d) {
-                        return y(parseFloat(d.frequency));
+                        return y(d.frequency);
                     })
                     .attr("r", 4)
                     .on("mouseover", function (d) {

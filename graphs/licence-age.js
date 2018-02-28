@@ -1,7 +1,16 @@
 function drawLicenseAgePlot(divName) {
-
-
     d3.csv("../data/licence-age.csv", function (data) {
+
+        data = data.map(function (d) {
+            d.age = parseFloat(d.age);
+            d.provisional_male = parseFloat(d.provisional_male);
+            d.provisional_female = parseFloat(d.provisional_female);
+            d.provisional_total = parseFloat(d.provisional_total);
+            d.full_male = parseFloat(d.full_male);
+            d.full_female = parseFloat(d.full_female);
+            d.full_total = parseFloat(d.full_total);
+            return d;
+        });
 
         var margin = {top: 20, right: 15, bottom: 60, left: 60}
             , width = 960 - margin.left - margin.right
@@ -11,13 +20,13 @@ function drawLicenseAgePlot(divName) {
 
         var x = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return parseFloat(d.age);
+                return d.age;
             })])
             .range([0, width]);
 
         var y = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return parseFloat(d.full_total)
+                return d.full_total;
             })])
             .range([height, 0]);
 
@@ -37,7 +46,7 @@ function drawLicenseAgePlot(divName) {
         main.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -48,7 +57,7 @@ function drawLicenseAgePlot(divName) {
 
         main.append("g")
             .call(d3.axisLeft(y))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
@@ -97,7 +106,7 @@ function drawLicenseAgePlot(divName) {
             .text("Eligible for provisional car license");
 
 
-        // Scale
+        // Legend
         var legend_data = [
             {color: black, label: "Total full licenses", opacity: 1, field_name: "full_total"},
             {color: blue, label: "Male full licenses", opacity: 1, field_name: "full_male"},
@@ -192,10 +201,10 @@ function drawLicenseAgePlot(divName) {
                 .enter().append("svg:circle")
                 .attr("class", "scatter-dots")
                 .attr("cx", function (d) {
-                    return x(parseFloat(d.age));
+                    return x(d.age);
                 })
                 .attr("cy", function (d) {
-                    return y(parseFloat(d[field_name]));
+                    return y(d[field_name]);
                 })
                 .attr("r", 4)
                 .on("mouseover", function (d) {

@@ -1,19 +1,25 @@
 function drawPointsDistribution(divName) {
     d3.csv("../data/points-distribution.csv", function (data) {
 
+        data = data.map(function (d) {
+            d.Points = parseFloat(d.Points);
+            d.Count = parseFloat(d.Count);
+            return d;
+        });
+
         var margin = {top: 20, right: 15, bottom: 60, left: 60}
             , width = 960 - margin.left - margin.right
             , height = 500 - margin.top - margin.bottom;
 
         var x = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return parseFloat(d.Points);
+                return d.Points;
             })])
             .range([0, width]);
 
         var y = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) {
-                return parseFloat(d.Count)
+                return d.Count;
             })])
             .range([height, 0]);
 
@@ -34,7 +40,7 @@ function drawPointsDistribution(divName) {
         main.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
-            .attr('class', 'main axis date')
+            .attr('class', 'main axis')
             .append("text")
             .attr("fill", "#000")
             .attr("y", 30)
@@ -75,10 +81,10 @@ function drawPointsDistribution(divName) {
             .data(data)
             .enter().append("svg:circle")
             .attr("cx", function (d) {
-                return x(parseFloat(d.Points));
+                return x(d.Points);
             })
             .attr("cy", function (d) {
-                return y(parseFloat(d.Count));
+                return y(d.Count);
             })
             .attr("r", 4)
             .on("mouseover", function (d) {
@@ -117,7 +123,7 @@ function drawPointsDistribution(divName) {
                 y.domain([0, this.value]);
 
                 points.attr("cy", function (d) {
-                    return y(parseFloat(d.Count));
+                    return y(d.Count);
                 });
 
                 line.y(function (d) {
@@ -140,7 +146,7 @@ function drawPointsDistribution(divName) {
             main.append("g")
                 .attr("id", "yAxis")
                 .call(d3.axisLeft(y))
-                .attr('class', 'main axis date')
+                .attr('class', 'main axis')
                 .append("text")
                 .attr("fill", "#000")
                 .attr("transform", "rotate(-90)")
