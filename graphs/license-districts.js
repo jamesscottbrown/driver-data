@@ -1,4 +1,4 @@
-function drawLicenseDistricts(divName, map) {
+function drawLicenseDistricts(divName) {
 
 
     d3.csv("../data/licence-districts.csv", function (data) {
@@ -13,6 +13,7 @@ function drawLicenseDistricts(divName, map) {
 
             return d;
         });
+
 
         var margin = {top: 20, right: 15, bottom: 60, left: 60}
             , width = 800 - margin.left - margin.right
@@ -34,7 +35,7 @@ function drawLicenseDistricts(divName, map) {
 
         var chart = d3.select('#' + divName)
             .append('svg:svg')
-            .attr('width', width + margin.right + margin.left)
+            .attr('width', width + margin.right + margin.left + 663)
             .attr('height', height + margin.top + margin.bottom)
             .attr('class', 'chart');
 
@@ -44,6 +45,7 @@ function drawLicenseDistricts(divName, map) {
             .attr('height', height)
             .attr('class', 'main');
 
+        var map = drawMap();
 
         main.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -144,7 +146,8 @@ function drawLicenseDistricts(divName, map) {
             );
 
         function dragged() {
-            d3.select(this).attr("cx", Math.min(d3.event.x, width)).attr("cy", Math.max(0, d3.event.y));
+            var new_x = Math.max(0, Math.min(d3.event.x, width));
+            d3.select(this).attr("cx", new_x).attr("cy", Math.max(0, d3.event.y));
             updateHighlighting();
         }
 
@@ -193,6 +196,39 @@ function drawLicenseDistricts(divName, map) {
 
         updateHighlighting();
 
+        function drawMap() {
+            var map = chart.append('g')
+                .attr('transform', 'translate(' + 800 + ',' + margin.top + ')');
+
+            var sf = 1.50;
+            var width = 960 / sf,
+                height = 1160 / sf;
+
+            var projection = d3.geoAlbers()
+                .center([0, 55.4])
+                .rotate([4.4, 0])
+                .parallels([50, 60])
+                .scale(1200 * 5 / sf)
+                .translate([width / 2, height / 2]);
+
+            var path = d3.geoPath()
+                .projection(projection);
+
+
+            d3.json("../data/Districts.json", function (error, uk) {
+
+                var districts = map.selectAll(".subunit")
+                    .data(topojson.feature(uk, uk.objects['Districts']).features)
+                    .enter().append("path")
+                    .attr("class", "feature")
+                    .attr("d", path)
+                    .on("click", function (d) {
+                        console.log(d.properties.name)
+                    });
+            });
+
+            return map;
+        }
     });
 
 
