@@ -88,35 +88,28 @@ function drawPointsMap(divName) {
             ;
         });
 
-        d3.selectAll(".district")
-            .on("mouseover", function (d) {
-                var district_name = this.innerHTML;
-                var alt_name = district_name;
+        // Color scale bar
+        var scale_g = svg.append("g");
+        var num_levels = 25;
+        for (var i=0; i<num_levels+1; i++){
+            var val = 0 + i*(0.25/num_levels);
 
-                if (district_name.length === 3) {
-                    alt_name = district_name[0] + district_name[1] + "0" + district_name[2];
-                } else if (district_name.length === 2) {
-                    alt_name = district_name[0] + "0" + district_name[1];
-                }
+            scale_g.append("rect").attr("y", i*20).attr("x", 20).attr("height", 20).attr("width", 40)
+                .style("fill", colorScale(val));
 
-                console.log("LOOKING")
-                districts.style("fill", function (d2) {
-                    if (d2.properties.name === district_name || d2.properties.name === alt_name) {
-                        console.log("FOUND")
-                        return yellow;
-                    } else {
-                        return "grey";
-                    }
-                });
+            var label = (100 * Math.round(val*1000)/1000) + "%" ;
+
+            if (label.length < 3){
+                label = " " + label;
+            }
+
+            if (i==num_levels){
+                label = ">= 25%"
+            }
+            scale_g.append("text").attr("y", 15 + i*20).attr("x", 20+40+ 10).text(label);
 
 
-            })
-            .on("mousout", function (d) {
-                districts.style("fill", function (d) {
-                    return getColor(d);
-                });
-            })
-
+        }
 
     })
 
