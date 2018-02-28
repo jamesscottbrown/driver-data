@@ -95,7 +95,7 @@ function drawPointsDistribution(divName) {
                     .duration(200)
                     .style("opacity", .9);
 
-                div.html(d.Count + " people have " + d.Points + " points")
+                div.html(numberWithCommas(d.Count) + " people have " + d.Points + " points")
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })

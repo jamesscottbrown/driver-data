@@ -103,7 +103,7 @@ function drawLicenseDistricts(divName) {
 
                 var ratio = d.provisional_total / (d.provisional_total + d.full_total);
                 var percentage = to2dp(ratio * 100);
-                div.html("<b> " + percentage + "%<br /> of licenses are provisional in <b>" + d.district + "</b> (" + d.provisional_total + " provisional, " + d.full_total + " full)")
+                div.html("<b> " + percentage + "%<br /> of licenses are provisional in <b>" + d.district + "</b> (" + numberWithCommas(d.provisional_total) + " provisional, " + numberWithCommas(d.full_total) + " full)")
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })

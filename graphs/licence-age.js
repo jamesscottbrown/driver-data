@@ -216,7 +216,7 @@ function drawLicenseAgePlot(divName) {
                         .style("opacity", .9);
 
                     var type = provisional ? "provisional" : " full";
-                    div.html(d[field_name] + " " + d.age + " year old <b>" + sex + "</b> have a <b> " + type + "  license</b>")
+                    div.html(numberWithCommas(d[field_name]) + " " + d.age + " year old <b>" + sex + "</b> have a <b> " + type + "  license</b>")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })
