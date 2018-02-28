@@ -149,6 +149,18 @@
 </div>
 
 
+    <div id="points-map">
+    <h2>How does the proportion of people with points on their license differ between districts?</h2>
+        <p>Some postcode districts contain only a single licensed driver, and 100% of their drivers have points. The average figure is 6%. </p>
+
+    <p><b>Source:</b> sheet DRL0132-June2017 (normalized using driver counts from DRL0102-June2017).</p>
+
+    <p><b>Interactivity:</b> mouse-over plotted districts to see corresponding data values.</p>
+
+
+</div>
+
+
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -158,6 +170,7 @@
 <script src="license-districts.js"></script>
 <script src="points-distribution.js"></script>
 <script src="points-age-heatmap.js"></script>
+<script src="points-map.js"></script>
 
 
 <script>
@@ -171,54 +184,11 @@
 
     function drawEverything() {
         drawLicenseAgePlot("license-age");
-
-        var map = drawMap();
-
         drawScatterplotSexCategory("license-sex-category");
         drawPointsDistribution("points-distribution");
         drawPointsAgeHeatmap("points-distribution-age");
-        drawLicenseDistricts("licence-districts", map);
-    }
-
-    function drawMap() {
-
-        var sf = 2;
-        var width = 960/sf,
-            height = 1160/sf;
-
-        var projection = d3.geoAlbers()
-            .center([0, 55.4])
-            .rotate([4.4, 0])
-            .parallels([50, 60])
-            .scale(1200 * 5/sf)
-            .translate([width / 2, height / 2]);
-
-        var path = d3.geoPath()
-            .projection(projection);
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        d3.json("../data/Districts.json", function (error, uk) {
-
-            var districts = svg.selectAll(".subunit")
-                .data(topojson.feature(uk, uk.objects['Districts']).features)
-                .enter().append("path")
-                .attr("class", "feature")
-                .attr("d", path)
-                .on("click", function (d) {
-                    console.log(d.properties.name)
-                });
-
-
-            districts.style("fill", function (d) {
-                return d.properties.name.startsWith("PO") ? "red" : "grey"
-            })
-
-        });
-
-        return svg;
+        drawLicenseDistricts("licence-districts");
+        drawPointsMap("points-map");
     }
 
 
