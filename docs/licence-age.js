@@ -89,7 +89,7 @@ function drawlicenceAgePlot(divName) {
         main.append("text")
             .attr("x", x(71))
             .attr("y", y(800000))
-            .text("licence renewal required every 3 years");
+            .text("Licence renewal required every 3 years");
 
         // 17 year old annotation
         var line_17 = main.append("line")
