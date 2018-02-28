@@ -95,7 +95,11 @@ function drawPointsDistribution(divName) {
                     .duration(200)
                     .style("opacity", .9);
 
-                div.html(numberWithCommas(d.Count) + " people have " + d.Points + " points")
+                var label = numberWithCommas(d.Count) + " people have " + d.Points + " points";
+                if (d.Count === 1){
+                    label = "1 person has " + d.Points + " points";
+                }
+                div.html(label)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
@@ -153,7 +157,7 @@ function drawPointsDistribution(divName) {
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("text-anchor", "end")
-                .text("People");
+                .text("Number of People");
 
         }
     })
