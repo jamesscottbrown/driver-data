@@ -291,7 +291,8 @@ function drawPointsAgeHeatmap(divName) {
                             .duration(200)
                             .style("opacity", .9);
 
-                        div.html(to2dp(d.frequency) + "/1000 " + d.sex + " of age " + d.age + " have " + d.points + " points ")
+                        var sex_name  = {male: "men", female: "women"};
+                        div.html(to2dp(d.frequency) + "/1000 " + sex_name[d.sex] + " of age " + d.age + " have " + d.points + " points ")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY - 28) + "px");
                     })
