@@ -1,6 +1,6 @@
 function drawPointsAgeHeatmap(divName) {
 
-    d3.csv("../data/points.csv", function (data) {
+    d3.csv("data//points.csv", function (data) {
 
         data = data.map(function (d) {
             d.age = parseFloat(d.age);

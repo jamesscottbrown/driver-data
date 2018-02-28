@@ -1,5 +1,5 @@
 function drawPointsDistribution(divName) {
-    d3.csv("../data/points-distribution.csv", function (data) {
+    d3.csv("data//points-distribution.csv", function (data) {
 
         data = data.map(function (d) {
             d.Points = parseFloat(d.Points);

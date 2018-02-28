@@ -1,7 +1,7 @@
 function drawPointsMap(divName) {
 
 
-    d3.csv("../data/points-districts.csv", function (data) {
+    d3.csv("data//points-districts.csv", function (data) {
 
         var proportions = [];
         for (var i = 0; i < data.length; i++) {
@@ -54,7 +54,7 @@ function drawPointsMap(divName) {
         }
 
         var districts;
-        d3.json("../data/Districts.json", function (error, uk) {
+        d3.json("data//Districts.json", function (error, uk) {
 
             districts = svg.selectAll(".subunit")
                 .data(topojson.feature(uk, uk.objects['Districts']).features)

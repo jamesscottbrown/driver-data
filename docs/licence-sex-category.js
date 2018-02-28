@@ -1,5 +1,5 @@
 function drawScatterplotSexCategory(divName) {
-    d3.csv("../data/entitlement-class.csv", function (data) {
+    d3.csv("data//entitlement-class.csv", function (data) {
 
         data = data.map(function (d) {
             d.Male = parseFloat(d.Male);

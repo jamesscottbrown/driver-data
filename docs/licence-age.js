@@ -1,5 +1,5 @@
 function drawLicenseAgePlot(divName) {
-    d3.csv("../data/licence-age.csv", function (data) {
+    d3.csv("data//licence-age.csv", function (data) {
 
         data = data.map(function (d) {
             d.age = parseFloat(d.age);

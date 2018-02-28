@@ -1,7 +1,7 @@
 function drawLicenseDistricts(divName) {
 
 
-    d3.csv("../data/licence-districts.csv", function (data) {
+    d3.csv("data//licence-districts.csv", function (data) {
 
         data = data.map(function (d) {
             d.provisional_male = parseFloat(d.provisional_male);
@@ -215,7 +215,7 @@ function drawLicenseDistricts(divName) {
                 .projection(projection);
 
 
-            d3.json("../data/Districts.json", function (error, uk) {
+            d3.json("data//Districts.json", function (error, uk) {
 
                 var districts = map.selectAll(".subunit")
                     .data(topojson.feature(uk, uk.objects['Districts']).features)
