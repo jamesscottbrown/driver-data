@@ -64,7 +64,7 @@ function drawPointsAgeHeatmap(divName) {
             .attr("dy", "0.71em")
             .attr("x", (width / 2).toString())
             .attr("text-anchor", "end")
-            .text("Points");
+            .text("Number of Points");
 
         main.append("g")
             .call(d3.axisLeft(y))
@@ -72,7 +72,8 @@ function drawPointsAgeHeatmap(divName) {
             .append("text")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            .attr("y", -40)
+            .attr("x", -400)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
             .text("Age");
