@@ -1,4 +1,4 @@
-function drawLicenseDistricts(divName) {
+function drawlicenceDistricts(divName) {
 
 
     d3.csv("data//licence-districts.csv", function (data) {
@@ -59,7 +59,7 @@ function drawLicenseDistricts(divName) {
             .attr("dy", "0.71em")
             .attr("x", (width / 2).toString())
             .attr("text-anchor", "end")
-            .text("Number of Provisional Licenses");
+            .text("Number of Provisional licences");
 
         main.append("g")
             .call(d3.axisLeft(y))
@@ -70,7 +70,7 @@ function drawLicenseDistricts(divName) {
             .attr("y", 6)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("Number of Full Licenses");
+            .text("Number of Full licences");
 
 
         var g = main.append("svg:g");
@@ -103,7 +103,7 @@ function drawLicenseDistricts(divName) {
 
                 var ratio = d.provisional_total / (d.provisional_total + d.full_total);
                 var percentage = to2dp(ratio * 100);
-                div.html("<b> " + percentage + "%<br /> of licenses are provisional in <b>" + d.district + "</b> (" + numberWithCommas(d.provisional_total) + " provisional, " + numberWithCommas(d.full_total) + " full)")
+                div.html("<b> " + percentage + "%<br /> of licences are provisional in <b>" + d.district + "</b> (" + numberWithCommas(d.provisional_total) + " provisional, " + numberWithCommas(d.full_total) + " full)")
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
@@ -119,12 +119,12 @@ function drawLicenseDistricts(divName) {
         main.append("text")
             .attr("x", x(70000))
             .attr("y", y(5000))
-            .text("Highest proportion of provisional licenses");
+            .text("Highest proportion of provisional licences");
 
         main.append("text")
             .attr("x", x(5000))
             .attr("y", y(75000))
-            .text("Lowest proportion of provisional licenses");
+            .text("Lowest proportion of provisional licences");
 
         // Dragging ratio line
         var ratioLine = g.append("line")

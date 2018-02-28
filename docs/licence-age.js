@@ -1,4 +1,4 @@
-function drawLicenseAgePlot(divName) {
+function drawlicenceAgePlot(divName) {
     d3.csv("data//licence-age.csv", function (data) {
 
         data = data.map(function (d) {
@@ -89,7 +89,7 @@ function drawLicenseAgePlot(divName) {
         main.append("text")
             .attr("x", x(71))
             .attr("y", y(800000))
-            .text("License renewal required every 3 years");
+            .text("licence renewal required every 3 years");
 
         // 17 year old annotation
         var line_17 = main.append("line")
@@ -103,17 +103,17 @@ function drawLicenseAgePlot(divName) {
         main.append("text")
             .attr("x", x(18))
             .attr("y", y(800000))
-            .text("Eligible for provisional car license");
+            .text("Eligible for provisional car licence");
 
 
         // Legend
         var legend_data = [
-            {color: black, label: "Total full licenses", opacity: 1, field_name: "full_total"},
-            {color: blue, label: "Male full licenses", opacity: 1, field_name: "full_male"},
-            {color: pink, label: "Female full licenses", opacity: 1, field_name: "full_female"},
-            {color: black, label: "Total provisional licenses", opacity: provisionalOpacity, field_name: "provisional_total"},
-            {color: blue, label: "Male provisional licenses", opacity: provisionalOpacity, field_name: "provisional_male"},
-            {color: pink, label: "Female provisional licenses", opacity: provisionalOpacity, field_name: "provisional_female" }];
+            {color: black, label: "Total full licences", opacity: 1, field_name: "full_total"},
+            {color: blue, label: "Male full licences", opacity: 1, field_name: "full_male"},
+            {color: pink, label: "Female full licences", opacity: 1, field_name: "full_female"},
+            {color: black, label: "Total provisional licences", opacity: provisionalOpacity, field_name: "provisional_total"},
+            {color: blue, label: "Male provisional licences", opacity: provisionalOpacity, field_name: "provisional_male"},
+            {color: pink, label: "Female provisional licences", opacity: provisionalOpacity, field_name: "provisional_female" }];
 
         var legend = main.append("g").attr("id", "legend");
         legend.selectAll("circle").data(legend_data)
@@ -216,7 +216,7 @@ function drawLicenseAgePlot(divName) {
                         .style("opacity", .9);
 
                     var type = provisional ? "provisional" : " full";
-                    div.html(numberWithCommas(d[field_name]) + " " + d.age + " year old <b>" + sex + "</b> have a <b> " + type + "  license</b>")
+                    div.html(numberWithCommas(d[field_name]) + " " + d.age + " year old <b>" + sex + "</b> have a <b> " + type + "  licence</b>")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })

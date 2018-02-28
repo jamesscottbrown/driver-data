@@ -6,22 +6,22 @@
 <body onload="drawEverything();">
 
 <div class="page-header">
-    <h2>Driving license statistics
+    <h2>Driving licence statistics
         <small>A series of visualizations of <a href="https://data.gov.uk/dataset/driving-licence-data">GB Driving
             Licence Data</a>. (<a href="https://github.com/jamesscottbrown/driver-data">Github repository</a>)
         </small>
     </h2>
 </div>
 
-<div id="license-age">
+<div id="licence-age">
     <h2>How old are driving licence holders?</h2>
-    <p>There is a sudden surge in provisional driving license registrations <u id="age-17">at 17</u>, which gradually
-        declines as people switch to full licenses. Provisional licenses for some vehicle types (such as mopeds) can be
+    <p>There is a sudden surge in provisional driving licence registrations <u id="age-17">at 17</u>, which gradually
+        declines as people switch to full licences. Provisional licences for some vehicle types (such as mopeds) can be
         obtained by people under 16, but this makes
-        up a very small fraction of all licenses</p>
+        up a very small fraction of all licences</p>
 
-    <p>There is a sudden step down in all license types <u id="age-70">at
-        70</u>, after which licenses must be renewed every 3 years (rather than the 10 years for younger drivers).
+    <p>There is a sudden step down in all licence types <u id="age-70">at
+        70</u>, after which licences must be renewed every 3 years (rather than the 10 years for younger drivers).
     </p>
 
     <p><b>Source:</b> sheet DRL0101-June2017.</p>
@@ -32,15 +32,15 @@
 
 </div>
 
-<div id="license-sex-category">
+<div id="licence-sex-category">
     <h2>How many men and women hold each class of licence?</h2>
-    <p>Some classes of license are far more common than others. The most common are held by similar numbers of men and
+    <p>Some classes of licence are far more common than others. The most common are held by similar numbers of men and
         women, but there are a number of less common licence types that are held almost exclusively by men (such as
         Class H - Tracked vehicles). Additionally, for some classes (such as A and H) there are far more provisional
-        than full licenses. </p>
+        than full licences. </p>
 
     <p>For context, see this <a href="https://www.gov.uk/old-driving-licence-categories">official explanation of driving
-        license categories</a>.</p>
+        licence categories</a>.</p>
 
     <p><b>Source:</b> sheet DRL0110-June2017.</p>
 
@@ -69,13 +69,13 @@
 
     <p> Young drivers have fewer points on average: they have had less opportunity to acquire them, and are perhaps
         initially more cautious because receiving 6 points within 2 years of passing the test would trigger automatic
-        revocation of their license. </p>
+        revocation of their licence. </p>
 
     <p><b>Source:</b> sheet DRL0131 - June2017.</p>
 
     <p><b>Interactivity:</b> mouse-over a cell in the heat-map to see the corresponding value, and plots for people of
         the corresponding age or with the corresponding number of points. Click on the heat-map to lock these plots to a
-        particular value, so that you cna mouse over their data points to see corresponding values.</p>
+        particular value, so that you can mouse over their data points to see corresponding values.</p>
 
     <p>These plots show <i>the proportion of drivers of a particular age who have a particular number of points</i>
         (scaled to be per thousand drivers of that age).</p>
@@ -88,12 +88,12 @@
 
 
 <div id="licence-districts">
-    <h2>How does the proportion of provisional licenses differ between districts?</h2>
+    <h2>How does the proportion of provisional licences differ between districts?</h2>
 
-    <p>In a few postcode districts, approximately half of all driving licenses are provisional, but in others this
+    <p>In a few postcode districts, approximately half of all driving licences are provisional, but in others this
         figure is closer to 5%.</p>
 
-    <p>Districts in which the proportion of licenses that are
+    <p>Districts in which the proportion of licences that are
         provisional is above a threshold (those below and to the right of the line on the scatterplot) are highlighted in
         yellow.
     </p>
@@ -102,7 +102,7 @@
     <p><b>Source:</b> sheet DRL0102-June2017.</p>
 
     <p><b>Interactivity:</b> mouse-over plotted points to see corresponding data values. Drag the black circle on the
-        end ot the line to adjust the threshold proportion of provisional licenses - selected districts will be
+        end ot the line to adjust the threshold proportion of provisional licences - selected districts will be
         highlighted on the scatter-plot and map.</p>
 
 
@@ -110,8 +110,8 @@
 
 
 <div id="points-map">
-    <h2>How does the proportion of people with points on their license differ between districts?</h2>
-    <p>Some postcode districts contain only a single licensed driver, and 100% of their drivers have points. The average
+    <h2>How does the proportion of people with points on their licence differ between districts?</h2>
+    <p>Some postcode districts contain only a single licenced driver, and 100% of their drivers have points. The average
         figure is 6%. </p>
 
     <p><b>Source:</b> sheet DRL0132-June2017 (normalized using driver counts from DRL0102-June2017).</p>
@@ -128,7 +128,7 @@
 
 <script src="licence-sex-category.js"></script>
 <script src="licence-age.js"></script>
-<script src="license-districts.js"></script>
+<script src="licence-districts.js"></script>
 <script src="points-distribution.js"></script>
 <script src="points-age-heatmap.js"></script>
 <script src="points-map.js"></script>
@@ -144,11 +144,11 @@
     }
 
     function drawEverything() {
-        drawLicenseAgePlot("license-age");
-        drawScatterplotSexCategory("license-sex-category");
+        drawlicenceAgePlot("licence-age");
+        drawScatterplotSexCategory("licence-sex-category");
         drawPointsDistribution("points-distribution");
         drawPointsAgeHeatmap("points-distribution-age");
-        drawLicenseDistricts("licence-districts");
+        drawlicenceDistricts("licence-districts");
         drawPointsMap("points-map");
     }
 
