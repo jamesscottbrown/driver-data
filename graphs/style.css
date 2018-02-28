@@ -58,6 +58,7 @@ small {
     shape-rendering: crispEdges;
     stroke: black;
     fill: none;
+    stroke-width: 1px;
 }
 
 circle {
